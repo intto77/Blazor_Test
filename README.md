@@ -23,4 +23,5 @@ https://www.youtube.com/watch?v=4G_BzLxa9Nw&t=854s
 -  1:24:08:  Non-Page component.
 -  1:26:48:  Import non-page component by using HTML element syntax.
 -  1:27:46:  Use Page component as non-page component
--  ![image](https://user-images.githubusercontent.com/97278496/173019038-7dc3a691-bfd8-4a0a-9d90-f0d79950fe18.png)
+
+![image](https://user-images.githubusercontent.com/97278496/173019038-7dc3a691-bfd8-4a0a-9d90-f0d79950fe18.png)
