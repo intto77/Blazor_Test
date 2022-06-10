@@ -2,7 +2,8 @@
 <h1>Hello, World</h1>
 
 Welcome to your new app.
-<br /><br />
+<br />
+<br />
 <p>
     Name:@person.SalesPerson
 </p>
@@ -12,11 +13,11 @@ Welcome to your new app.
 </p>
 
 <p>
-    <input type="number" 
+    <input type="number"
            @bind-value="person.Amount"
-           @bind-value:event="oninput"/>
+           @bind-value:event="oninput" />
 
- </p>
+</p>
 
 <p>
     <label>
@@ -30,27 +31,71 @@ Welcome to your new app.
 
 <p>
     <label>
-        <input 
-               type="radio" 
-               value="1" 
-               name="group" 
+        <input type="radio"
+               value="1"
+               name="group"
                checked="@(selectedGroup==1)"
-               @onclick="@(()=>selectedGroup=1)"
-               />1
+               @onclick="@(()=>selectedGroup=1)" />1
     </label>
     <label>
-        <input 
-               type="radio" 
-               value="2" 
-               name="group" 
+        <input type="radio"
+               value="2"
+               name="group"
                checked="@(selectedGroup==2)"
-               @onclick="@(()=>selectedGroup=2)"/>1
+               @onclick="@(()=>selectedGroup=2)" />2
     </label>
+</p>
+<p>
+    <select @bind="selectedLocationId">
+        <option value="0"></option>
+        @foreach (var loc in person.Locations)
+        {
+            <option value="@loc.Id">@loc.City</option>
+        }
+    </select>
+</p>
+<p>
+    <ul>
+        @foreach (var loc in person.Locations)
+        {
+            <li>@loc.City, @loc.ProvState, @loc.County</li>
+        }
+    </ul>
+</p>
+
+<p>
+    <table class="table">
+        @foreach (var loc in person.Locations)
+        {
+        <tr>
+            <td>@loc.Id</td>
+            <td>
+                <input type="text"
+                       class="form-control"
+                       @bind-value="loc.City"
+                       @bind-value:event="oninput" />
+            </td>
+            <td>
+                <input type="text"
+                       class="form-control"
+                       @bind-value="loc.ProvState"
+                       @bind-value:event="oninput" />
+            </td>
+            <td>
+                <input type="text"
+                       class="form-control"
+                       @bind-value="loc.County"
+                       @bind-value:event="oninput" />
+            </td>
+        </tr>
+        }
+    </table>
 </p>
 @code{
 
     IndexViewModel person = null;
     int selectedGroup = 1;
+    int selectedLocationId = 0;
 
     protected override void OnInitialized()
     {
