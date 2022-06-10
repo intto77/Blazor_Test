@@ -1,0 +1,33 @@
+﻿@inherits LayoutComponentBase
+@using b.UIThemeClasses
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <CascadingValue Value="@theme">
+            <div class="content px-4">
+                @Body
+            </div>
+        </CascadingValue>
+        @*<button @onclick="ChangeToDarkTheme">primary mode</button>
+        <button @onclick="ChangeToSucessTheme">sucess mode</button>*@
+    </div>
+</div>
+
+
+@code{
+    private ThemeInfo theme = new() { ButtonClass = "btn-success" };
+
+    //private void ChangeToDarkTheme()
+    //{
+    //    theme = new () { ButtonClass = "btn-primary" };
+    //}
+
+    //private void ChangeToSucessTheme()
+    //{
+    //    theme = new () { ButtonClass = "btn-success" };
+    //}
+}

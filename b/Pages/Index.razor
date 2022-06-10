@@ -1,0 +1,88 @@
+﻿@page "/"
+<h1>Hello, World</h1>
+
+Welcome to your new app.
+<br /><br />
+<p>
+    Name:@person.SalesPerson
+</p>
+
+<p>
+    Amout:@person.Amount.ToString("c")
+</p>
+
+<p>
+    <input type="number" 
+           @bind-value="person.Amount"
+           @bind-value:event="oninput"/>
+
+ </p>
+
+<p>
+    <label>
+        <input type="checkbox"
+               @bind-value="person.isActive" />
+        &nbsp;IsActive
+    </label>
+    <br />
+    Is Active : @person.isActive
+</p>
+
+<p>
+    <label>
+        <input 
+               type="radio" 
+               value="1" 
+               name="group" 
+               checked="@(selectedGroup==1)"
+               @onclick="@(()=>selectedGroup=1)"
+               />1
+    </label>
+    <label>
+        <input 
+               type="radio" 
+               value="2" 
+               name="group" 
+               checked="@(selectedGroup==2)"
+               @onclick="@(()=>selectedGroup=2)"/>2
+    </label>
+</p>
+@code{
+
+    IndexViewModel person = null;
+    int selectedGroup = 1;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        person = new IndexViewModel
+        {
+            SalesPerson = "Alex",
+            Amount = 15000,
+            Locations = new List<Location>{
+                    new Location{ Id=1,City="Toronto" ,ProvState="Ontario",County="Canada" },
+                    new Location{ Id=2,City="Montreal" ,ProvState="Quebec",County="Canada" }}
+        };
+    }
+
+    #region "View Model"
+
+    class IndexViewModel
+    {
+        public string SalesPerson { get; set; }
+        public double Amount { get; set; }
+        public bool isActive { get; set; }
+        public List<Location> Locations;
+    }
+
+
+    class Location
+    {
+        public int Id { get; set; }
+        public string City { get; set; }
+        public string ProvState { get; set; }
+        public string County { get; set; }
+    }
+    #endregion
+}
